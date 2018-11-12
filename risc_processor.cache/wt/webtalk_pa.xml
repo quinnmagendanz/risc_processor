@@ -3,7 +3,7 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Mon Nov 12 13:45:22 2018">
+<application name="pa" timeStamp="Mon Nov 12 14:21:16 2018">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="699c9a6832704cc584c80f90303d9b3b" type="ProjectID"/>
 <property name="ProjectIteration" value="1" type="ProjectIteration"/>
@@ -17,213 +17,73 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
 </item>
 <item name="Java Command Handlers">
-<property name="AddSources" value="1" type="JavaHandler"/>
+<property name="AddSources" value="2" type="JavaHandler"/>
 <property name="NewProject" value="1" type="JavaHandler"/>
 <property name="OpenProject" value="1" type="JavaHandler"/>
 </item>
 <item name="Gui Resources Info">
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, ctl.v], 3, false" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, ctl.v], 3, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, regfile.v], 4, false" value="2" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files, regfile.v], 4, false, false, false, false, false, true" value="2" type="GuiResourceData"/>
+<property name="FINISH, Finish" value="1" type="GuiResourceData"/>
+<property name="NEXT, Next " value="1" type="GuiResourceData"/>
+<property name="PAResourceAtoD.CreateSrcFileDialog_FILE_NAME, pc" value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_ADD_SOURCES, Add Sources..." value="1" type="GuiResourceData"/>
+<property name="PAResourceCommand.PACommandNames_AUTO_UPDATE_HIER, Hierarchy Update" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Syntax Error Files], 2" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Verilog Header, risc_constants.vh], 2, false" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Verilog Header, risc_constants.vh], 2, false, false, false, false, false, true" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, Verilog Header], 1" value="1" type="GuiResourceData"/>
-<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, alu (alu.v" value="2" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, alu (alu.v" value="3" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, ctl (ctl.v" value="3" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, pc (pc.v" value="4" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources, regfile (regfile.v" value="3" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources], 0, true" value="1" type="GuiResourceData"/>
+<property name="PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, [root, Design Sources], 0, true, false, false, false, true, false" value="1" type="GuiResourceData"/>
 <property name="PAResourceEtoH.GettingStartedView_RECENT_PROJECTS, /afs/athena.mit.edu/user/q/p/qpm3/6.111/risc_processor/risc_processor.xpr, 0" value="1" type="GuiResourceData"/>
-<property name="PAResourceOtoP.PAViews_CODE, Code" value="5" type="GuiResourceData"/>
+<property name="PAResourceOtoP.PAViews_CODE, Code" value="3" type="GuiResourceData"/>
 <property name="PAResourceOtoP.PAViews_PROJECT_SUMMARY, Project Summary" value="1" type="GuiResourceData"/>
-<property name="alu.v, 100, 139" value="1" type="GuiResourceData"/>
-<property name="alu.v, 100, 139, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 100, 574" value="1" type="GuiResourceData"/>
-<property name="alu.v, 107, 54" value="1" type="GuiResourceData"/>
-<property name="alu.v, 112, 140" value="1" type="GuiResourceData"/>
-<property name="alu.v, 127, 18" value="1" type="GuiResourceData"/>
-<property name="alu.v, 138, 306" value="1" type="GuiResourceData"/>
-<property name="alu.v, 150, 234" value="1" type="GuiResourceData"/>
-<property name="alu.v, 151, 276" value="1" type="GuiResourceData"/>
-<property name="alu.v, 154, 307" value="1" type="GuiResourceData"/>
-<property name="alu.v, 154, 307, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 154, 323" value="1" type="GuiResourceData"/>
-<property name="alu.v, 155, 267" value="1" type="GuiResourceData"/>
-<property name="alu.v, 156, 248" value="1" type="GuiResourceData"/>
-<property name="alu.v, 158, 201" value="1" type="GuiResourceData"/>
-<property name="alu.v, 161, 338" value="1" type="GuiResourceData"/>
-<property name="alu.v, 161, 338, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 162, 142" value="1" type="GuiResourceData"/>
-<property name="alu.v, 162, 217" value="1" type="GuiResourceData"/>
-<property name="alu.v, 162, 264" value="1" type="GuiResourceData"/>
-<property name="alu.v, 162, 264, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 162, 325" value="1" type="GuiResourceData"/>
-<property name="alu.v, 162, 325, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 163, 244" value="1" type="GuiResourceData"/>
-<property name="alu.v, 163, 244, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 163, 351" value="1" type="GuiResourceData"/>
-<property name="alu.v, 163, 351, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 165, 281" value="1" type="GuiResourceData"/>
-<property name="alu.v, 165, 281, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 166, 170" value="1" type="GuiResourceData"/>
-<property name="alu.v, 167, 296" value="1" type="GuiResourceData"/>
-<property name="alu.v, 168, 185" value="1" type="GuiResourceData"/>
-<property name="alu.v, 168, 185, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 168, 198" value="1" type="GuiResourceData"/>
-<property name="alu.v, 168, 198, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 168, 228" value="1" type="GuiResourceData"/>
-<property name="alu.v, 168, 228, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 168, 358" value="1" type="GuiResourceData"/>
-<property name="alu.v, 169, 167" value="1" type="GuiResourceData"/>
-<property name="alu.v, 169, 167, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 169, 215" value="1" type="GuiResourceData"/>
-<property name="alu.v, 169, 215, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 169, 295" value="1" type="GuiResourceData"/>
-<property name="alu.v, 171, 295, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 171, 337" value="1" type="GuiResourceData"/>
-<property name="alu.v, 172, 208" value="1" type="GuiResourceData"/>
-<property name="alu.v, 173, 166" value="1" type="GuiResourceData"/>
-<property name="alu.v, 174, 140" value="1" type="GuiResourceData"/>
-<property name="alu.v, 174, 140, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 176, 170" value="1" type="GuiResourceData"/>
-<property name="alu.v, 177, 154" value="1" type="GuiResourceData"/>
-<property name="alu.v, 177, 154, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 177, 159" value="1" type="GuiResourceData"/>
-<property name="alu.v, 182, 189" value="1" type="GuiResourceData"/>
-<property name="alu.v, 184, 133" value="1" type="GuiResourceData"/>
-<property name="alu.v, 215, 139" value="1" type="GuiResourceData"/>
-<property name="alu.v, 216, 138" value="1" type="GuiResourceData"/>
-<property name="alu.v, 227, 46" value="1" type="GuiResourceData"/>
-<property name="alu.v, 248, 156" value="1" type="GuiResourceData"/>
-<property name="alu.v, 248, 174" value="1" type="GuiResourceData"/>
-<property name="alu.v, 251, 187" value="1" type="GuiResourceData"/>
-<property name="alu.v, 254, 140" value="1" type="GuiResourceData"/>
-<property name="alu.v, 254, 159" value="1" type="GuiResourceData"/>
-<property name="alu.v, 256, 157" value="1" type="GuiResourceData"/>
-<property name="alu.v, 256, 188" value="1" type="GuiResourceData"/>
-<property name="alu.v, 259, 144" value="1" type="GuiResourceData"/>
-<property name="alu.v, 279, 145" value="1" type="GuiResourceData"/>
-<property name="alu.v, 286, 140" value="1" type="GuiResourceData"/>
-<property name="alu.v, 288, 144" value="1" type="GuiResourceData"/>
-<property name="alu.v, 288, 214" value="1" type="GuiResourceData"/>
-<property name="alu.v, 312, 98" value="1" type="GuiResourceData"/>
-<property name="alu.v, 328, 364" value="1" type="GuiResourceData"/>
-<property name="alu.v, 335, 172" value="1" type="GuiResourceData"/>
-<property name="alu.v, 402, 239" value="1" type="GuiResourceData"/>
-<property name="alu.v, 51, 142" value="1" type="GuiResourceData"/>
-<property name="alu.v, 65, 261" value="1" type="GuiResourceData"/>
-<property name="alu.v, 65, 261, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 71, 144" value="1" type="GuiResourceData"/>
-<property name="alu.v, 76, 320" value="1" type="GuiResourceData"/>
-<property name="alu.v, 76, 320, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 77, 264" value="1" type="GuiResourceData"/>
-<property name="alu.v, 77, 264, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 77, 294" value="1" type="GuiResourceData"/>
-<property name="alu.v, 77, 294, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 77, 332" value="1" type="GuiResourceData"/>
-<property name="alu.v, 77, 332, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 78, 172" value="1" type="GuiResourceData"/>
-<property name="alu.v, 78, 262" value="1" type="GuiResourceData"/>
-<property name="alu.v, 78, 262, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 79, 175, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 79, 187" value="1" type="GuiResourceData"/>
-<property name="alu.v, 79, 187, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 79, 251" value="1" type="GuiResourceData"/>
-<property name="alu.v, 79, 251, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 80, 283" value="1" type="GuiResourceData"/>
-<property name="alu.v, 80, 283, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 80, 352" value="1" type="GuiResourceData"/>
-<property name="alu.v, 80, 352, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 81, 237" value="1" type="GuiResourceData"/>
-<property name="alu.v, 81, 237, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 82, 222" value="1" type="GuiResourceData"/>
-<property name="alu.v, 82, 222, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 82, 370" value="1" type="GuiResourceData"/>
-<property name="alu.v, 83, 160" value="1" type="GuiResourceData"/>
-<property name="alu.v, 83, 160, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 83, 306" value="1" type="GuiResourceData"/>
-<property name="alu.v, 83, 306, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="alu.v, 85, 204" value="1" type="GuiResourceData"/>
-<property name="alu.v, 85, 204, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 101, 456" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 101, 456, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 104, 520" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 108, 491" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 124, 486" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 124, 486, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 195, 89" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 223, 200" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 229, 99" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 23, 488" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 233, 139" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 259, 430" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 259, 430, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 260, 396" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 261, 397, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 261, 534" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 261, 534, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 262, 444" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 262, 444, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 262, 490" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 262, 490, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 262, 548" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 262, 548, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 263, 502" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 263, 502, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 264, 418" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 264, 418, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 264, 519" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 264, 519, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 266, 475" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 266, 475, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 424" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 424, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 432" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 432, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 459" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 459, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 498" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 498, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 564" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 267, 564, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 268, 381" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 268, 381, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 268, 457" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 268, 457, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 268, 574" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 268, 574, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 27, 308" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 27, 499" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 270, 435" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 270, 435, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 271, 477" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 271, 593" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 271, 593, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 272, 478, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 272, 486" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 272, 486, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 277, 441" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 277, 441, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 287, 351" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 290, 368" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 290, 368, false, false, false, false, true" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 294, 187" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 295, 357" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 31, 133" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 409, 504" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 578, 548" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 579, 488" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 581, 544" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 73, 531" value="1" type="GuiResourceData"/>
-<property name="ctl.v, 92, 506" value="1" type="GuiResourceData"/>
-<property name="risc_constants.vh, 224, 598" value="1" type="GuiResourceData"/>
-<property name="risc_constants.vh, 227, 588" value="1" type="GuiResourceData"/>
-<property name="risc_constants.vh, 244, 469" value="1" type="GuiResourceData"/>
-<property name="risc_constants.vh, 252, 441" value="1" type="GuiResourceData"/>
-<property name="risc_constants.vh, 318, 453" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcChooserPanel_CREATE_FILE, Create File" value="1" type="GuiResourceData"/>
+<property name="PAResourceQtoS.SrcMenu_IP_HIERARCHY, IP Hierarchy" value="1" type="GuiResourceData"/>
+<property name="RDIResource.BaseDialog_OK, OK" value="2" type="GuiResourceData"/>
+<property name="alu.v, 0, 7" value="1" type="GuiResourceData"/>
+<property name="ctl.v, 40, 0" value="1" type="GuiResourceData"/>
+<property name="ctl.v, 46, 16" value="1" type="GuiResourceData"/>
+<property name="pc.v, 119, 153" value="1" type="GuiResourceData"/>
+<property name="pc.v, 127, 81" value="1" type="GuiResourceData"/>
+<property name="pc.v, 156, 5" value="1" type="GuiResourceData"/>
+<property name="pc.v, 163, 204" value="1" type="GuiResourceData"/>
+<property name="pc.v, 164, 200" value="1" type="GuiResourceData"/>
+<property name="pc.v, 176, 245" value="1" type="GuiResourceData"/>
+<property name="pc.v, 184, 155" value="1" type="GuiResourceData"/>
+<property name="pc.v, 191, 142" value="1" type="GuiResourceData"/>
+<property name="pc.v, 192, 368" value="1" type="GuiResourceData"/>
+<property name="pc.v, 227, 176" value="1" type="GuiResourceData"/>
+<property name="pc.v, 231, 171" value="1" type="GuiResourceData"/>
+<property name="pc.v, 26, 141" value="1" type="GuiResourceData"/>
+<property name="pc.v, 276, 155" value="1" type="GuiResourceData"/>
+<property name="pc.v, 28, 111" value="1" type="GuiResourceData"/>
+<property name="pc.v, 289, 151" value="1" type="GuiResourceData"/>
+<property name="pc.v, 304, 168" value="1" type="GuiResourceData"/>
+<property name="pc.v, 320, 203" value="1" type="GuiResourceData"/>
+<property name="pc.v, 338, 121" value="1" type="GuiResourceData"/>
+<property name="pc.v, 48, 257" value="1" type="GuiResourceData"/>
+<property name="pc.v, 54, 326" value="1" type="GuiResourceData"/>
+<property name="pc.v, 71, 110" value="1" type="GuiResourceData"/>
+<property name="pc.v, 76, 110" value="1" type="GuiResourceData"/>
+<property name="pc.v, 88, 157" value="1" type="GuiResourceData"/>
+<property name="pc.v, 97, 46" value="1" type="GuiResourceData"/>
+<property name="regfile.v, 0, 5" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 210, 572" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 246, 595" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 284, 589" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 293, 591" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 84, 572" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 84, 572, false, false, false, false, true" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 87, 593" value="1" type="GuiResourceData"/>
+<property name="risc_constants.vh, 87, 593, false, false, false, false, true" value="1" type="GuiResourceData"/>
 </item>
 <item name="Other">
-<property name="GuiMode" value="15" type="GuiMode"/>
+<property name="GuiMode" value="16" type="GuiMode"/>
 <property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="12" type="TclMode"/>
+<property name="TclMode" value="13" type="TclMode"/>
 </item>
 </section>
 </application>

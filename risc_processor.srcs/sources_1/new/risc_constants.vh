@@ -50,3 +50,8 @@ parameter alu_A = 6'b101010;
 parameter alu_SHL = 6'b110000;
 parameter alu_SHR = 6'b110001;
 parameter alu_SRA = 6'b110011;
+
+// PC
+parameter RESET = 32'h80000000;
+parameter ILLOP = 32'h80000004;
+parameter XADR = 32'h80000008;

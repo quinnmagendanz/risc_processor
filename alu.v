@@ -1,3 +1,4 @@
+`timescale 1ns / 1ps
 // 
 module alu(	input signed [31:0] a, b, 
 		input [5:0] fn, 

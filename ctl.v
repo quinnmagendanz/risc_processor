@@ -1,4 +1,4 @@
-
+`timescale 1ns / 1ps
 // 
 module ctl (
         input [5:0] op, 
