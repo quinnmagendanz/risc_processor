@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="14" Path="/afs/athena.mit.edu/user/q/p/qpm3/6.111/risc_processor/risc_processor.xpr">
+<Project Version="7" Minor="14" Path="/afs/athena.mit.edu/user/b/j/bjomard/Documents/project/risc_processor/risc_processor.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="d886097a76344bf2a1388f7ae1ff23b6"/>
@@ -21,7 +21,7 @@
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>
-    <Option Name="IPUserFilesDir" Val="$PPRDIR/risc_processor.ip_user_files"/>
+    <Option Name="IPUserFilesDir" Val="$PPRDIR/../../../../../../q/p/qpm3/6.111/risc_processor/risc_processor.ip_user_files"/>
     <Option Name="IPStaticSourceDir" Val="$PPRDIR/risc_processor.ip_user_files/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="WTXSimLaunchSim" Val="0"/>
