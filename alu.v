@@ -28,7 +28,7 @@ endmodule
 
 // Perform bitwise boolean logic.
 module bool(	input [31:0] a, b,
-		input [3:0] bfn
+		input [3:0] bfn,
 		output [31:0] bool_out);
 
 	wire [31:0] and_op = a & b;
@@ -47,7 +47,7 @@ module arith(	input [31:0] a, b,
 		output z, v, n,
 		output [31:0] arith_out);
 
-	wire xb = {32{afn}} ^ b;
+	wire [31:0] xb = {32{afn}} ^ b;
 	assign arith_out = a + b + afn;
 
 	assign z = (arith_out == 0);
