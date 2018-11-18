@@ -44,7 +44,7 @@ module regfile (
 		radata <= data[ra1];
         rbdata <= data[ra2];
 		
-		if (werf) begin
+		if (we) begin
 		  data[wa] <= wdata;
 		end
 	end
