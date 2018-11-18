@@ -4,7 +4,7 @@ module regfile (
         input [31:0] wdata,
 		input [4:0] ra, rb, rc,
 		input ra2sel, wasel, werf, clock,
-		output [31:0] radata, rbdata
+		output reg [31:0] radata, rbdata
 		);
 
 	reg [31:0] data [31:0];
@@ -12,7 +12,6 @@ module regfile (
 	reg [4:0] ra1 = 0;
 	reg [4:0] ra2 = 0;
 	reg [4:0] wa = 0;
-	reg [31:0] wd = 0;
 	reg we = 0;
 	
 	reg [4:0] r31 = 31;
@@ -28,7 +27,6 @@ module regfile (
 	end
 	
 	always @(negedge clock) begin
-		// TODO(magendanz) data[31] always 0.
 		ra1 <= ra;
 		data[r31] <= 0;
 		we <= werf;
@@ -41,10 +39,13 @@ module regfile (
 		if (wasel) begin
 		  wa <= XP;
 		end
-		else wa <= rc
+		else wa <= rc;
 		
-		if () begin
-		  data[ra] = wdata;
+		radata <= data[ra1];
+        rbdata <= data[ra2];
+		
+		if (werf) begin
+		  data[wa] <= wdata;
 		end
 	end
 endmodule
