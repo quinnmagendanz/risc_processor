@@ -26,9 +26,12 @@ module regfile (
 	   end
 	end
 	
+	// TODO(magendanz) neg? Shouldnt it be pos?
+	// We also need to make sure reads take no clock cycles
+	// and writes complete on posedge.
 	always @(negedge clock) begin
 		ra1 <= ra;
-		data[r31] <= 0;
+		data[r31] <= 0; // TODO(magendanz) Just wire this
 		we <= werf;
 		
 		if (ra2sel) begin

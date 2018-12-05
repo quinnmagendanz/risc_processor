@@ -31,8 +31,7 @@ module labkit(
 
 //////////////////////////////////////////////////////////////////////////////////
 //
-//  remove these lines and insert your lab here
-
+/*
     assign LED = SW;     
     assign JA[7:0] = 8'b0;
     assign data = {28'h0123456, SW[3:0]};   // display 0123456 + SW
@@ -42,8 +41,43 @@ module labkit(
     assign LED17_R = BTNL;
     assign LED17_G = BTNC;
     assign LED17_B = BTNR; 
+*/
+    wire clock, reset, reset, irq, z, asel, bsel, moe, mwr, ra2sel, wasel, werf;
+    wire [1:0] wdsel;
+    wire [2:0] pcsel;
+    wire [5:0] ra, rb, rc, op, alufn, fn; 
+    wire [31:0] pc, pc_inc, pc_offset, id, jt, wdata, radata, rbdata, mrd;
+    wire signed [31:0] a, b, alu_out;
+   
+    assign ra = id[20:16];
+    assign rb = id[15:11];
+    assign rc = id[25:21];
+    assign z = radata == 0 ? 1 : 0;
+    assign jt = radata;
+    assign a = asel ? pc_offset : radata;
+    assign b = bsel ? {{16{id[15]}}, id} : rbdata;
+    assign wdata = wdsel == 0 ? pc_inc : (wdsel == 1 ? alu_out : mrd);
+    
+    // PC updated on rising clock edge.
+    pc counter(id, jt[31:2], pcsel, clock, reset, pc, pc_inc, pc_offset);
 
+    // Reads instruction at PC.
+    instr instructions(pc, id);
 
+    // Sets state to match instruction read.
+    ctl control(id, reset, irq, z, alufn, pcsel, wdsel, asel, bsel, moe, mwr, ra2sel, wasel, werf);
+        
+    // TODO(magendanz) pass in 16-bit input to specified regesters.
+    // Reads occur on wire. On rising clock edge, if ?WERF?, write 
+    // to register occurs.
+    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, clock, radata, rbdata);
+
+    // Perform arithmatic on inputs.
+    alu arith(a, b, fn, alu_out);
+    
+    // Reads occurs if MOE. On rising clock edge, if MWR, write to memory occurs.
+    mem data_memory(clock, mwd, ma, mwr, moe, mrd); 
+    
 
 //
 //////////////////////////////////////////////////////////////////////////////////

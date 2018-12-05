@@ -6,7 +6,7 @@ module ctl (
 		output [5:0] alufn,
 		output [2:0] pcsel,
 		output [1:0] wdsel,
-		output asel, bsel, moe, ra2sel, wasel, werf);
+		output asel, bsel, moe, mwr, ra2sel, wasel, werf);
 	`include "risc_constants.vh"
 	
 	wire [17:0] op_states [63:0]; 
