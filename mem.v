@@ -9,8 +9,8 @@ module mem (
     // memory for non-tiny data sets.
     reg [31:0] d_mem [6:0]; // Supports 128 32-bit stores.
     
-    // Think we can disregard MOE.
-    assign mrd = d_mem[ma];
+    // TODO(magendanz) not sure exactly why we need MOE.
+    assign mrd = d_mem[ma] & {32{moe}};
     
     always @(posedge clock) begin
         if (mwr) begin
