@@ -42,12 +42,29 @@ module labkit(
     assign LED17_G = BTNC;
     assign LED17_B = BTNR; 
 */
-    wire clock, reset, reset, irq, z, asel, bsel, moe, mwr, ra2sel, wasel, werf;
+    //reg [31:0] disp_data;
+    //assign data = disp_data;
+    wire reset;
+    debounce c_db(0, clock_25mhz, BTNC, reset);
+    wire fib_act;
+    debounce l_db(reset, clock_25mhz, BTNL, fib_act);
+    
+    reg [31:0] program_selector;
+    initial program_selector = 0;
+    always @(posedge clock_25mhz) begin
+        if (fib_act) program_selector = 1;
+        // TODO(magendanz) Add other programs when ready.
+        else program_selector = 0;
+    end
+
+    wire reset, irq, z, asel, bsel, moe, mwr, ra2sel, wasel, werf;
     wire [1:0] wdsel;
     wire [2:0] pcsel;
     wire [5:0] ra, rb, rc, op, alufn, fn; 
     wire [31:0] pc, pc_inc, pc_offset, id, jt, wdata, radata, rbdata, mrd;
     wire signed [31:0] a, b, alu_out;
+    
+    assign data[31:28] = pc;
    
     assign ra = id[20:16];
     assign rb = id[15:11];
@@ -59,7 +76,7 @@ module labkit(
     assign wdata = wdsel == 0 ? pc_inc : (wdsel == 1 ? alu_out : mrd);
     
     // PC updated on rising clock edge.
-    pc counter(id, jt[31:2], pcsel, clock, reset, pc, pc_inc, pc_offset);
+    pc counter(id, jt[31:2], pcsel, clock_25mhz, reset, pc, pc_inc, pc_offset);
 
     // Reads instruction at PC.
     instr instructions(pc, id);
@@ -70,13 +87,13 @@ module labkit(
     // TODO(magendanz) pass in 16-bit input to specified regesters.
     // Reads occur on wire. On rising clock edge, if ?WERF?, write 
     // to register occurs.
-    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, clock, radata, rbdata);
+    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, clock_25mhz, program_selector, radata, rbdata, data[27:0]);
 
     // Perform arithmatic on inputs.
     alu arith(a, b, fn, alu_out);
     
     // Reads occurs if MOE. On rising clock edge, if MWR, write to memory occurs.
-    mem data_memory(clock, mwd, ma, mwr, moe, mrd); 
+    mem data_memory(clock_25mhz, mwd, ma, mwr, moe, mrd); 
     
 
 //

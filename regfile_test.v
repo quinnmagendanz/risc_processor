@@ -24,10 +24,9 @@ module regfile_test ();
 
 		#50;
 
-        // TODO(magendanz) Brad, can you finish this test?
 		#10 wdata = 1;
-		#5 werf = 1;
-		#15 rc = 1;
+		#15 werf = 1;
+		#20 rc = 1;
 		wdata = 2;
 		#10 rc = 5;
 		wdata = 3;

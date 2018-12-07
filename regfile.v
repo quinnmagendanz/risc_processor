@@ -4,15 +4,27 @@ module regfile (
         input [31:0] wdata,
 		input [4:0] ra, rb, rc,
 		input ra2sel, wasel, werf, clock,
-		output [31:0] radata, rbdata
+		input [31:0] program_selector,
+		output [31:0] radata, rbdata,
+		output [27:0] disp_data
 		);
 
 	reg [31:0] data [31:0];
-	integer i = 0;
-	wire [4:0] ra1 = 0;
-	wire [4:0] ra2 = 0;
-	wire [4:0] wa = 0;
-	wire we = 0;
+	
+	// Display registers 1-8
+	wire a1 = data[0][3:0];
+	wire a2 = data[1][3:0];
+	wire a3 = data[2][3:0];
+	wire a4 = data[3][3:0];
+	wire a5 = data[4][3:0];
+	wire a6 = data[5][3:0];
+	wire a7 = data[6][3:0];
+	assign disp_data = {a7, a6, a5, a4, a3, a2, a1};
+
+	wire [4:0] ra1;
+	wire [4:0] ra2;
+	wire [4:0] wa;
+	wire we;
 	
 	reg [4:0] r31 = 31;
 	reg [4:0] XP = 30;
@@ -20,29 +32,28 @@ module regfile (
 	reg [4:0] LP = 28;
 	reg [4:0] BP = 27;
 	
+    integer i = 0;
 	initial begin
 	   for (i=0; i<32; i=i+1) begin
 		  data[i] <= 0;
 	   end
 	end
 	
-	// TODO(magendanz) neg? Shouldnt it be pos?
-	// We also need to make sure reads take no clock cycles
-	// and writes complete on posedge.
-
-	assign we = werf;
-	assign wa = (wasel)? XP : rc;	
+    assign ra1 = ra;
+    assign ra2 = (ra2sel)? rc : rb;
+    assign radata = data[ra1];
+    assign rbdata = data[ra2];
+    
+    assign we = werf;
+    assign wa = (wasel)? XP : rc;
 
 	always @(posedge clock) begin
-		
-		if (!wasel && we) begin
+	    data[0] <= program_selector;
+        if (werf) begin
 		  data[wa] <= wdata;
 		end
 	end
 	
-	assign ra1 = ra;
-	assign ra2 = (ra2sel)? rc : rb;
-	assign radata = data[ra1];
-        assign rbdata = data[ra2];
+
 	
 endmodule
