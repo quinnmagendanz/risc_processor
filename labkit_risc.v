@@ -94,7 +94,7 @@ module labkit(
         
     // Reads occur on wire. On rising clock edge, if WERF, write 
     // to register occurs.
-    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, clock, program_selector, radata, rbdata, data /* Processor output */);
+    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, reset, clock, program_selector, radata, rbdata, data /* Processor output */);
 
     // Perform arithmatic on inputs.
     alu arith(a, b, alufn, alu_out);
