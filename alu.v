@@ -8,6 +8,7 @@ module alu(	input signed [31:0] a, b,
 	
 	reg [31:0] alu_result;
 	assign alu_out = alu_result;
+	initial alu_result = 0;
 	always @(*) begin
 	    case (fn)
 	        `alu_CMPEQ: alu_result = {31'd0, a == b};

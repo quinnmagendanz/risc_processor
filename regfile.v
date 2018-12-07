@@ -3,23 +3,24 @@
 module regfile (
         input [31:0] wdata,
 		input [4:0] ra, rb, rc,
-		input ra2sel, wasel, werf, clock,
+		input ra2sel, wasel, werf, reset, clock,
 		input [31:0] program_selector,
 		output [31:0] radata, rbdata,
-		output [27:0] disp_data
+		output [31:0] disp_data
 		);
 
 	reg [31:0] data [31:0];
 	
 	// Display registers 1-8
-	wire a1 = data[0][3:0];
-	wire a2 = data[1][3:0];
-	wire a3 = data[2][3:0];
-	wire a4 = data[3][3:0];
-	wire a5 = data[4][3:0];
-	wire a6 = data[5][3:0];
-	wire a7 = data[6][3:0];
-	assign disp_data = {a7, a6, a5, a4, a3, a2, a1};
+	wire [3:0] a1 = data[1][3:0];
+	wire [3:0] a2 = data[2][3:0];
+	wire [3:0] a3 = data[3][3:0];
+	wire [3:0] a4 = data[4][3:0];
+	wire [3:0] a5 = data[5][3:0];
+	wire [3:0] a6 = data[6][3:0];
+	wire [3:0] a7 = data[7][3:0];
+    wire [3:0] a8 = data[8][3:0];
+	assign disp_data = {a8, a7, a6, a5, a4, a3, a2, a1};
 
 	wire [4:0] ra1;
 	wire [4:0] ra2;
@@ -49,8 +50,13 @@ module regfile (
 
 	always @(posedge clock) begin
 	    data[0] <= program_selector;
-        if (werf) begin
-		  data[wa] <= wdata;
+        if (werf && wa != 31) begin
+		   data[wa] <= wdata;
+		end
+		if (reset) begin
+		    for (i=0; i<32; i=i+1) begin
+                data[i] <= 0;
+            end
 		end
 	end
 	

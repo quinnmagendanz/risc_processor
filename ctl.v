@@ -10,12 +10,12 @@ module ctl (
 	`include "risc_constants.vh"
 	
 	wire [17:0] op_states [63:0]; 
-	                           //alufn,     asel, bsel, moe,  mwr,  pcsel,ra2sel,wasel,wdsel,werf
+	                                 //alufn,     asel, bsel, moe,  mwr,  pcsel,ra2sel,wasel,wdsel,werf
     assign op_states[`op_LD] =      {`alu_ADD,   1'b0, 1'b1, 1'b1, 1'b0, 3'd0, 1'b0, 1'b0, 2'd2, 1'b1};
     assign op_states[`op_ST] =      {`alu_ADD,   1'b0, 1'b1, 1'b0, 1'b1, 3'd0, 1'b1, 1'b0, 2'd0, 1'b0};
-    assign op_states[`op_JMP] =     {6'b0, 1'b0, 1'b0, 1'b0, 1'b0, 3'd2, 1'b0, 1'b0, 2'd0, 1'b1};
-    assign op_states[`op_BEQ] =     {6'b0, 1'b0, 1'b0, 1'b0, 1'b0, {2'd0, z}, 1'b0, 1'b0, 2'd0, 1'b1};
-    assign op_states[`op_BNE] =     {6'b0, 1'b0, 1'b0, 1'b0, 1'b0, {2'd0, ~z}, 1'b0, 1'b0, 2'd0, 1'b1};
+    assign op_states[`op_JMP] =     {6'b0,       1'b0, 1'b0, 1'b0, 1'b0, 3'd2, 1'b0, 1'b0, 2'd0, 1'b1};
+    assign op_states[`op_BEQ] =     {6'b0,       1'b0, 1'b0, 1'b0, 1'b0, {2'd0, z}, 1'b0, 1'b0, 2'd0, 1'b1};
+    assign op_states[`op_BNE] =     {6'b0,       1'b0, 1'b0, 1'b0, 1'b0, {2'd0, ~z}, 1'b0, 1'b0, 2'd0, 1'b1};
     assign op_states[`op_LDR] =     {`alu_A,     1'b1, 1'b0, 1'b1, 1'b0, 3'd0, 1'b0, 1'b0, 2'd2, 1'b1};
     assign op_states[`op_ADD] =     {`alu_ADD,   1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_SUB] =     {`alu_SUB,   1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
