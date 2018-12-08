@@ -60,7 +60,7 @@
 `define XADR        32'h80000008
 
 // Instructions
-// TODO(magendanz) Extra imstructions: ZERO, MOV, PUSHA
+// TODO(magendanz) Extra instructions: ZERO, MOV, PUSHA
 `define LD(ra, lit, rc)     {`op_LD, rc, ra, lit}
 `define ST(rc, lit, ra)     {`op_ST, rc, ra, lit}
 `define JMP(ra, rc)         {`op_JMP, rc, ra, 16'b0}
@@ -81,6 +81,7 @@
 `define SHL(ra, rb, rc)     {`op_SHL, rc, ra, rb, 11'b0}
 `define SHR(ra, rb, rc)     {`op_SHR, rc, ra, rb, 11'b0}
 `define ADDC(ra, lit, rc)   {`op_ADDC, rc, ra, lit}
+`define MOV(rc, ra)         {`op_MOV, rc, 16'd0, ra}
 `define SUBC(ra, lit, rc)   {`op_SUBC, rc, ra, lit}
 `define MULC(ra, lit, rc)   {`op_MULC, rc, ra, lit}
 `define DIVC(ra, lit, rc)   {`op_DIVC, rc, ra, lit}

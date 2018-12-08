@@ -13,7 +13,7 @@
 `define l(j) assign i[j + (`LOAD_ADDR >> 2)] =
 
 // Instructions
-// TODO(magendanz) Extra imstructions: ZERO, MOV, PUSHA
+// TODO(magendanz) Extra instructions: ZERO, MOV, PUSHA
 
 module instr (
             input [31:0] pc, 
