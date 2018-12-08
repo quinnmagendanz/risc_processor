@@ -77,11 +77,12 @@
 `define AND(ra, rb, rc)     {`op_AND, rc, ra, rb, 11'b0}
 `define OR(ra, rb, rc)      {`op_OR, rc, ra, rb, 11'b0}
 `define XOR(ra, rb, rc)     {`op_XOR, rc, ra, rb, 11'b0}
+`define ZERO(ra)	    {`op_XOR, ra, ra, ra, 11'b0}
 `define XNOR(ra, rb, rc)    {`op_XNOR, rc, ra, rb, 11'b0}
 `define SHL(ra, rb, rc)     {`op_SHL, rc, ra, rb, 11'b0}
 `define SHR(ra, rb, rc)     {`op_SHR, rc, ra, rb, 11'b0}
 `define ADDC(ra, lit, rc)   {`op_ADDC, rc, ra, lit}
-`define MOV(rc, ra)         {`op_MOV, rc, ra, 16'd0}
+`define MOV(rc, ra)         {`op_ADDC, rc, ra, 16'd0}
 `define SUBC(ra, lit, rc)   {`op_SUBC, rc, ra, lit}
 `define MULC(ra, lit, rc)   {`op_MULC, rc, ra, lit}
 `define DIVC(ra, lit, rc)   {`op_DIVC, rc, ra, lit}
