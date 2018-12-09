@@ -18,6 +18,7 @@ module alu(	input signed [31:0] a, b,
             `alu_SUB: alu_result = a - b;
             `alu_MUL: alu_result = a * b;
             `alu_DIV: alu_result = a / b;
+            `alu_MOD: alu_result = a % b;
             `alu_AND: alu_result = a & b;
             `alu_OR: alu_result = a | b;
             `alu_XOR: alu_result = a ^ b;

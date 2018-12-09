@@ -1,16 +1,40 @@
 module labkit_test();
     
-    reg [31:0] program_selector;
     wire [31:0] data;
-    reg clock, reset, irq;
+    reg [15:0] SW;
+    reg BTNC, BTNL, BTNR, BTNU, BTND, clock;
+    
+    wire [31:0] reg_data;
+    // Last switch toggles between displaying input and output.
+    assign data = SW[15] ? reg_data : {9'd0, SW[14:8], 8'd0, SW[7:0]};
+    
+    wire reset = BTNC;
+    // debounce c_db(0, clock, BTNC, reset);
+    wire fib_act = BTNL;
+    // debounce l_db(reset, clock, BTNL, fib_act);
+    wire sort_act;
+    // debounce r_db(reset, clock, BTNR, sort_act);
+    wire load_act;
+    // debounce u_db(reset, clock, BTNU, load_act);
+    wire save_act;
+    // debounce d_db(reset, clock, BTND, save_act);
+   
+    reg [31:0] program_selector;
+    initial program_selector = 0;
+    always @(posedge clock) begin // Assume this gets held for more than 1 clock cycle to allow copy.
+       if (fib_act) program_selector = 1;
+        // TODO(magendanz) Add other programs when ready.
+        else program_selector = 0;
+    end
 
-    wire z, asel, bsel, moe, mwr, ra2sel, wasel, werf;
+    wire irq, z, asel, bsel, moe, mwr, ra2sel, wasel, werf;
     wire [1:0] wdsel;
     wire [2:0] pcsel;
     wire [5:0] ra, rb, rc, op, alufn; 
     wire [31:0] pc, pc_inc, pc_offset, id, jt, wdata, radata, rbdata, mrd;
     wire signed [31:0] a, b, alu_out;
    
+    assign irq = 0;
     assign op = id[31:26];
     assign ra = id[20:16];
     assign rb = id[15:11];
@@ -30,12 +54,11 @@ module labkit_test();
     // Sets state to match instruction read.
     ctl control(op, reset, irq, z, alufn, pcsel, wdsel, asel, bsel, moe, mwr, ra2sel, wasel, werf);
         
-    // TODO(magendanz) pass in 16-bit input to specified regesters.
-    // Reads occur on wire. On rising clock edge, if ?WERF?, write 
+    // Reads occur on wire. On rising clock edge, if WERF, write 
     // to register occurs.
-    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, reset, clock, program_selector, radata, rbdata, data);
+    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, reset, clock, program_selector, SW /* Processor input */, radata, rbdata, reg_data);
 
-    // Perform arithmatic on inputs.
+    // Perform arithmetic on inputs.
     alu arith(a, b, alufn, alu_out);
     
     // Reads occurs if MOE. On rising clock edge, if MWR, write to memory occurs.
@@ -46,15 +69,24 @@ module labkit_test();
     end 
     
     initial begin
-        program_selector = 0;
+        SW = 0;
+        BTNC = 0;
+        BTNL = 0; 
+        BTNR = 0;
+        BTNU = 0;
+        BTND = 0;
         clock = 0;
-        reset = 0;
-        irq = 0;
         
         #50;
         
-        program_selector = 1;
-        #20 program_selector = 0;
+        BTNL = 1;
+        #20 BTNL = 0;
+        #400 SW[15] = 1;
+        #20 SW[15] = 0;
+        #10 SW = 16'b1000000000000110;
+        #10 BTNL = 1;
+        #20 BTNL = 0;
+
         
         #500;
     

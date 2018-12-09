@@ -21,6 +21,7 @@ module ctl (
     assign op_states[`op_SUB] =     {`alu_SUB,   1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_MUL] =     {`alu_MUL,   1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_DIV] =     {`alu_DIV,   1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
+    assign op_states[`op_MOD] =     {`alu_MOD,   1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_CMPEQ] =   {`alu_CMPEQ, 1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_CMPLT] =   {`alu_CMPLT, 1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_CMPLE] =   {`alu_CMPLE, 1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
@@ -35,6 +36,7 @@ module ctl (
     assign op_states[`op_SUBC] =    {`alu_SUB,   1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_MULC] =    {`alu_MUL,   1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_DIVC] =    {`alu_DIV,   1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
+    assign op_states[`op_MODC] =    {`alu_MOD,   1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_CMPEQC] =  {`alu_CMPEQ, 1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_CMPLTC] =  {`alu_CMPLT, 1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};
     assign op_states[`op_CMPLEC] =  {`alu_CMPLE, 1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1};

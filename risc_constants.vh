@@ -15,6 +15,7 @@
 `define op_CMPEQ    6'b100100
 `define op_CMPLT    6'b100101
 `define op_CMPLE    6'b100110
+`define op_MOD      6'b100111
 `define op_AND      6'b101000
 `define op_OR       6'b101001
 `define op_XOR      6'b101010
@@ -28,7 +29,8 @@
 `define op_DIVC     6'b110011
 `define op_CMPEQC   6'b110100
 `define op_CMPLTC   6'b110101
-`define op_CMPLEC   6'b100110
+`define op_CMPLEC   6'b110110
+`define op_MODC     6'b110111
 `define op_ANDC     6'b111000
 `define op_ORC      6'b111001
 `define op_XORC     6'b111010
@@ -45,6 +47,7 @@
 `define alu_SUB     6'b010001
 `define alu_MUL     6'b010010
 `define alu_DIV     6'b010011
+`define alu_MOD     6'b010100
 `define alu_AND     6'b101000
 `define alu_OR      6'b101110
 `define alu_XOR     6'b100110
@@ -71,6 +74,7 @@
 `define SUB(ra, rb, rc)     {`op_SUB, rc, ra, rb, 11'b0}
 `define MUL(ra, rb, rc)     {`op_MUL, rc, ra, rb, 11'b0}
 `define DIV(ra, rb, rc)     {`op_DIV, rc, ra, rb, 11'b0}
+`define MOD(ra, rb, rc)     {`op_MOD, rc, ra, rb, 11'b0}
 `define CMPEQ(ra, rb, rc)   {`op_CMPEQ, rc, ra, rb, 11'b0}
 `define CMPLT(ra, rb, rc)   {`op_CMPLT, rc, ra, rb, 11'b0}
 `define CMPLE(ra, rb, rc)   {`op_CMPLE, rc, ra, rb, 11'b0}
@@ -82,10 +86,11 @@
 `define SHL(ra, rb, rc)     {`op_SHL, rc, ra, rb, 11'b0}
 `define SHR(ra, rb, rc)     {`op_SHR, rc, ra, rb, 11'b0}
 `define ADDC(ra, lit, rc)   {`op_ADDC, rc, ra, lit}
-`define MOV(rc, ra)         {`op_ADDC, rc, ra, 16'd0}
+`define MOV(ra, rc)         {`op_ADDC, rc, ra, 16'd0}
 `define SUBC(ra, lit, rc)   {`op_SUBC, rc, ra, lit}
 `define MULC(ra, lit, rc)   {`op_MULC, rc, ra, lit}
 `define DIVC(ra, lit, rc)   {`op_DIVC, rc, ra, lit}
+`define MODC(ra, lit, rc)   {`op_MODC, rc, ra, lit}
 `define CMPEQC(ra, lit, rc) {`op_CMPEQC, rc, ra, lit}
 `define CMPLTC(ra, lit, rc) {`op_CMPLTC, rc, ra, lit}
 `define CMPLEC(ra, lit, rc) {`op_CMPLEC, rc, ra, lit}
