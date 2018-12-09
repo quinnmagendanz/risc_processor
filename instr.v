@@ -2,7 +2,7 @@
 
 `define DEFAULT_ADDR    32'd0
 `define FIB_ADDR        32'd80
-`define SORT_ADDR       32'd120
+`define SORT_ADDR       32'd160
 `define STORE_ADDR      32'd320
 `define LOAD_ADDR       32'd400    
 
@@ -121,8 +121,8 @@ module instr (
     // r3 - a[j]
     // r4 - tmp
     // r5 - comparison bit
-/*
-    `s(0) `ADDC(5'd31, 16'd1, 5'd0);	// for (i = 1
+
+    `s(0) `MOVC(16'd1, 5'd0);	// for (i = 1
 
     `s(1) `LD(5'd0, 16'd0, 5'd2);	// key = arr[i]
     `s(2) `SUBC(5'd0, 16'd4, 5'd1);	// j = i - 1
@@ -153,7 +153,7 @@ module instr (
     `s(22) `LD(5'd31, 16'd28, 5'd7);
 
     `s(23) `JMP(5'd31, 5'd31);
-*/    
+    
     ///////////////////////////////////////////////////////////////////////
     // Save
     

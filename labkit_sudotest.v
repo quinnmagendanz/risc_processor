@@ -1,8 +1,9 @@
 module labkit_test();
     
     wire [31:0] data;
-    reg [15:0] SW;
-    reg BTNC, BTNL, BTNR, BTNU, BTND, clock;
+    wire [15:0] SW;
+    wire BTNC, BTNL, BTNR, BTNU, BTND;
+    reg clock;
     
     wire [31:0] reg_data;
     // Last switch toggles between displaying input and output.
@@ -68,27 +69,53 @@ module labkit_test();
         forever #5 clock = !clock;
     end 
     
+    reg show_output;
+    reg [7:0] input1;
+    reg [6:0] input2;
+    reg do_reset, run_fib, run_sort, run_save, run_load;
+    assign SW = {show_output, input2, input1};
+    assign BTNC = do_reset;
+    assign BTNL = run_fib; 
+    assign BTNR = run_sort;
+    assign BTNU = run_load ;
+    assign BTND = run_save;
+    
+    integer i;
     initial begin
-        SW = 0;
-        BTNC = 0;
-        BTNL = 0; 
-        BTNR = 0;
-        BTNU = 0;
-        BTND = 0;
+        show_output = 0;
+        input1 = 0;
+        input2 = 0;
+        do_reset = 0;
+        run_fib = 0;
+        run_sort = 0;
+        run_load = 0;
+        run_save = 0;
+
         clock = 0;
         
         #50;
         
-        BTNL = 1;
-        #20 BTNL = 0;
-        #400 SW[15] = 1;
-        #20 SW[15] = 0;
-        #10 SW = 16'b1000000000000110;
-        #10 BTNL = 1;
-        #20 BTNL = 0;
-
-        
+        // Fib Test
+        run_fib = 1;
+        #20 run_fib = 0;
+        #400 show_output = 1;
+        #20 show_output = 0;
+        #10 show_output = 1;
+        input1 = 6;
+        #10 run_fib = 1;
+        #20 run_fib = 0;
         #500;
+        
+//        // Sort Test
+//        for (i = 0; i < 32; i = i + 4) begin
+//            #50 input1 = 9 - (i >> 2);
+//            input2 = i;
+//            run_save = 1;
+//            #20 run_save = 0;
+//        end
+//        #40 run_sort = 1;
+//        #20 run_sort = 0;
+//        #500;
     
         $stop;
     end
