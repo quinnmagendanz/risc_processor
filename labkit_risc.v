@@ -42,7 +42,7 @@ module labkit(
     assign LED17_G = BTNC;
     assign LED17_B = BTNR; 
 */
-    wire clock = clock_25mhz;
+    wire clock = CLK100MHZ;
     wire [31:0] reg_data;
     // Last switch toggles between displaying input and output.
     assign data = SW[15] ? reg_data : {9'd0, SW[14:8], 8'd0, SW[7:0]};
@@ -72,7 +72,8 @@ module labkit(
     wire irq, z, asel, bsel, moe, mwr, ra2sel, wasel, werf;
     wire [1:0] wdsel;
     wire [2:0] pcsel;
-    wire [5:0] ra, rb, rc, op, alufn; 
+    wire [5:0] ra, rb, rc, op, alufn;
+    wire [4:0] multi; 
     wire [31:0] pc, pc_inc, pc_offset, id, jt, wdata, radata, rbdata, mrd;
     wire signed [31:0] a, b, alu_out;
    
@@ -88,13 +89,13 @@ module labkit(
     assign wdata = wdsel == 0 ? pc_inc : (wdsel == 1 ? alu_out : mrd);
     
     // PC updated on rising clock edge.
-    pc counter(id, jt[31:2], pcsel, clock, reset, pc, pc_inc, pc_offset);
+    pc counter(id, jt[31:2], pcsel, clock, reset, multi, pc, pc_inc, pc_offset);
 
     // Reads instruction at PC.
     instr instructions(pc, id);
 
     // Sets state to match instruction read.
-    ctl control(op, reset, irq, z, alufn, pcsel, wdsel, asel, bsel, moe, mwr, ra2sel, wasel, werf);
+    ctl control(op, reset, irq, z, alufn, pcsel, wdsel, asel, bsel, moe, mwr, ra2sel, wasel, werf, multi);
         
     // Reads occur on wire. On rising clock edge, if WERF, write 
     // to register occurs.
