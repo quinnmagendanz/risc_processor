@@ -37,6 +37,7 @@ module labkit_test();
     wire [5:0] ra, rb, rc, op, alufn; 
     wire [31:0] pc, pc_inc, pc_offset, id, jt, wdata, radata, rbdata, mrd;
     wire signed [31:0] a, b, alu_out;
+    wire [31:0] first_eight;
    
     assign irq = 0;
     assign op = id[31:26];
@@ -66,7 +67,7 @@ module labkit_test();
     alu arith(a, b, alufn, alu_out);
     
     // Reads occurs if MOE. On rising clock edge, if MWR, write to memory occurs.
-    mem data_memory(clock, mwr, moe, rbdata, alu_out, mrd); 
+    mem data_memory(clock, mwr, moe, rbdata, alu_out, mrd, first_eight); 
     
     initial begin   // system clock
         forever #5 clock = !clock;
@@ -83,6 +84,7 @@ module labkit_test();
     assign BTNU = run_load ;
     assign BTND = run_save;
     
+    integer i;
     initial begin
         show_output = 0;
         input1 = 0;
@@ -108,36 +110,51 @@ module labkit_test();
 //        #20 run_fib = 0;
 //        #500;
         
-//        // Sort Test
-//        integer i;
+        // Sort Test
+        // Simple
+        input1 = 2;
+        input2 = 0;
+        run_save = 1;
+        #20 run_save = 0;
+        #200 input1 = 1;
+        input2 = 4;
+        run_save = 1;
+        #20 run_save = 0;
+        #200 show_output = 1;
+        run_sort = 1;
+        #20 run_sort = 0;
+        #3000;
+//
+//        // Expensive
 //        for (i = 0; i < 32; i = i + 4) begin
-//            #50 input1 = 9 - (i >> 2);
+//            #200 input1 = 9 - (i >> 2);
 //            input2 = i;
 //            run_save = 1;
 //            #20 run_save = 0;
 //        end
-//        #40 run_sort = 1;
+//        #200 show_output = 1;
+//        run_sort = 1;
 //        #20 run_sort = 0;
-//        #500;
+//        #8000; // Need many cycles.
 
-	// Save and load test
-	input1 = 3;
-	input2 = 4;
-	show_output = 1;
-	#20 run_save = 1;
-	#20 run_save = 0;
-	#200 run_load = 1;
-	#20 run_load = 0;
-	#200 input1 = 6;
-	input2 = 8;
-	run_save = 1;
-    #20 run_save = 0;
-    #200 run_load = 1;
-    #20 run_load = 0;
-    #200 input2 = 4;
-    run_load = 1;
-    #20 run_load = 0;
-    #500;
+//        // Save and load test
+//        input1 = 3;
+//        input2 = 4;
+//        show_output = 1;
+//        #20 run_save = 1;
+//        #20 run_save = 0;
+//        #200 run_load = 1;
+//        #20 run_load = 0;
+//        #200 input1 = 6;
+//        input2 = 8;
+//        run_save = 1;
+//        #20 run_save = 0;
+//        #200 run_load = 1;
+//        #20 run_load = 0;
+//        #200 input2 = 4;
+//        run_load = 1;
+//        #20 run_load = 0;
+//        #500;
     
         $stop;
     end
