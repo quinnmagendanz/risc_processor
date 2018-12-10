@@ -2,7 +2,7 @@
 
 `define DEFAULT_ADDR    32'd0
 `define FIB_ADDR        32'd80
-`define SORT_ADDR       32'd160
+`define SORT_ADDR       32'd200
 `define STORE_ADDR      32'd320
 `define LOAD_ADDR       32'd400    
 
@@ -84,10 +84,10 @@ module instr (
     ///////////////////////////////////////////////////////////////////////
     // Fibonacci
     // Generates the n'th fibonacci number.
-    // r4 stores the current n fibbonacci number.
-    // r1 stores the value of the current fibbonacci number.
-    // r2 stores n-1.
-    // r3 stores n-2.
+    // r3 stores the current n fibbonacci number.
+    // r0 stores the value of the current fibbonacci number.
+    // r1 stores n-1.
+    // r2 stores n-2.
 
     `f(0) `MOV(5'd24, 5'd3);
     `f(1) `BNE(5'd3, 16'd2, 5'd31);    // If n == 0
@@ -109,7 +109,11 @@ module instr (
     `f(15) `ZERO(5'd1);
     `f(16) `ZERO(5'd2);
     `f(17) `ZERO(5'd3);
-    `f(18) `JMP(5'd31, 5'd31);
+    `f(18) `ZERO(5'd4);
+    `f(19) `ZERO(5'd5);
+    `f(20) `ZERO(5'd6);
+    `f(21) `ZERO(5'd7);
+    `f(22) `JMP(5'd31, 5'd31);
 
     
     ///////////////////////////////////////////////////////////////////////
@@ -156,8 +160,27 @@ module instr (
     
     ///////////////////////////////////////////////////////////////////////
     // Save
+    `t(0) `ST(5'd24, 16'd0, 5'd25); // store the value in memory
+    `t(1) `ZERO(5'd0);
+    `t(2) `ZERO(5'd1);
+    `t(3) `ZERO(5'd2);
+    `t(4) `ZERO(5'd3);
+    `t(5) `ZERO(5'd4);
+    `t(6) `ZERO(5'd5);
+    `t(7) `ZERO(5'd6);
+    `t(8) `ZERO(5'd7);
+    `t(9) `JMP(5'd31, 5'd31);
     
     ///////////////////////////////////////////////////////////////////////
     // Load
+    `l(0) `LD(5'd25, 16'd0, 5'd0); // load value into a display register
+    `l(1) `ZERO(5'd1);
+    `l(2) `ZERO(5'd2);
+    `l(3) `ZERO(5'd3);
+    `l(4) `ZERO(5'd4);
+    `l(5) `ZERO(5'd5);
+    `l(6) `ZERO(5'd6);
+    `l(7) `ZERO(5'd7);
+    `l(8) `JMP(5'd31, 5'd31);
 
 endmodule

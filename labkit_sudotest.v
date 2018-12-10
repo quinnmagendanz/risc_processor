@@ -13,17 +13,20 @@ module labkit_test();
     // debounce c_db(0, clock, BTNC, reset);
     wire fib_act = BTNL;
     // debounce l_db(reset, clock, BTNL, fib_act);
-    wire sort_act;
+    wire sort_act = BTNR;
     // debounce r_db(reset, clock, BTNR, sort_act);
-    wire load_act;
+    wire load_act = BTNU;
     // debounce u_db(reset, clock, BTNU, load_act);
-    wire save_act;
+    wire save_act = BTND;
     // debounce d_db(reset, clock, BTND, save_act);
    
     reg [31:0] program_selector;
     initial program_selector = 0;
     always @(posedge clock) begin // Assume this gets held for more than 1 clock cycle to allow copy.
        if (fib_act) program_selector = 1;
+       else if (sort_act) program_selector = 2;
+       else if (save_act) program_selector = 3;
+       else if (load_act) program_selector = 4;
         // TODO(magendanz) Add other programs when ready.
         else program_selector = 0;
     end
@@ -80,7 +83,6 @@ module labkit_test();
     assign BTNU = run_load ;
     assign BTND = run_save;
     
-    integer i;
     initial begin
         show_output = 0;
         input1 = 0;
@@ -95,18 +97,19 @@ module labkit_test();
         
         #50;
         
-        // Fib Test
-        run_fib = 1;
-        #20 run_fib = 0;
-        #400 show_output = 1;
-        #20 show_output = 0;
-        #10 show_output = 1;
-        input1 = 6;
-        #10 run_fib = 1;
-        #20 run_fib = 0;
-        #500;
+//        // Fib Test
+//        run_fib = 1;
+//        #20 run_fib = 0;
+//        #400 show_output = 1;
+//        #20 show_output = 0;
+//        #10 show_output = 1;
+//        input1 = 6;
+//        #10 run_fib = 1;
+//        #20 run_fib = 0;
+//        #500;
         
 //        // Sort Test
+//        integer i;
 //        for (i = 0; i < 32; i = i + 4) begin
 //            #50 input1 = 9 - (i >> 2);
 //            input2 = i;
@@ -116,6 +119,15 @@ module labkit_test();
 //        #40 run_sort = 1;
 //        #20 run_sort = 0;
 //        #500;
+
+        // Load-save Test
+        input1 = 1;
+        show_output = 1;
+        run_save = 1;
+        #20 run_save = 0;
+        #300 run_load = 1;
+        #20 run_load = 0;
+        #300;
     
         $stop;
     end
