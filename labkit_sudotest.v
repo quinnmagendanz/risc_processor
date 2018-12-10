@@ -120,14 +120,16 @@ module labkit_test();
 //        #20 run_sort = 0;
 //        #500;
 
-        // Load-save Test
-        input1 = 1;
-        show_output = 1;
-        run_save = 1;
-        #20 run_save = 0;
-        #300 run_load = 1;
-        #20 run_load = 0;
-        #300;
+	// Save and load test
+	input1 = 3;
+	input2 = 5;
+	#20 run_save = 1;
+	#20 run_save = 0;
+	#200 run_load = 1;
+	#20 run_load = 0;
+	#100 show_output = 1;
+	#50 show_output = 0;
+	#500;
     
         $stop;
     end
