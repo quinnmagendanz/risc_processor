@@ -122,14 +122,22 @@ module labkit_test();
 
 	// Save and load test
 	input1 = 3;
-	input2 = 5;
+	input2 = 4;
+	show_output = 1;
 	#20 run_save = 1;
 	#20 run_save = 0;
 	#200 run_load = 1;
 	#20 run_load = 0;
-	#100 show_output = 1;
-	#50 show_output = 0;
-	#500;
+	#200 input1 = 6;
+	input2 = 8;
+	run_save = 1;
+    #20 run_save = 0;
+    #200 run_load = 1;
+    #20 run_load = 0;
+    #200 input2 = 4;
+    run_load = 1;
+    #20 run_load = 0;
+    #500;
     
         $stop;
     end
