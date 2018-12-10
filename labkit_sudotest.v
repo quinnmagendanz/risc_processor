@@ -24,9 +24,9 @@ module labkit_test();
     initial program_selector = 0;
     always @(posedge clock) begin // Assume this gets held for more than 1 clock cycle to allow copy.
        if (fib_act) program_selector = 1;
-       if (sort_act) program_selector = 1;
-       if (save_act) program_selector = 1;
-       if (load_act) program_selector = 1;
+       if (sort_act) program_selector = 2;
+       if (save_act) program_selector = 3;
+       if (load_act) program_selector = 4;
         // TODO(magendanz) Add other programs when ready.
         else program_selector = 0;
     end
