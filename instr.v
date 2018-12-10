@@ -2,7 +2,7 @@
 
 `define DEFAULT_ADDR    32'd0
 `define FIB_ADDR        32'd80
-`define SORT_ADDR       32'd120
+`define SORT_ADDR       32'd160
 `define STORE_ADDR      32'd320
 `define LOAD_ADDR       32'd400    
 
@@ -62,22 +62,22 @@ module instr (
     // r1 is used to store this address to jump.
     
     `d(0) `BEQ(5'd26, -16'd1, 5'd31);    // Remain at first instruction until r0 != 0
-    `d(1) `ADDC(5'd26, 16'd0, 5'd0);
+    `d(1) `MOV(5'd26, 5'd0);
     `d(2) `SUBC(5'd0, 16'd1, 5'd0);    // Jump to program specified in r0.
     `d(3) `BNE(5'd0, 16'd2, 5'd31);
-    `d(4) `ADDC(5'd31, a1, 5'd1);
+    `d(4) `MOVC(a1, 5'd1);
     `d(5) `JMP(5'd1, 5'd31);
     `d(6) `SUBC(5'd0, 16'd1, 5'd0);
     `d(7) `BNE(5'd0, 16'd2, 5'd31);
-    `d(8) `ADDC(5'd31, a2, 5'd1);
+    `d(8) `MOVC(a2, 5'd1);
     `d(9) `JMP(5'd1, 5'd31);
     `d(10) `SUBC(5'd0, 16'd1, 5'd0);
     `d(11) `BNE(5'd0, 16'd2, 5'd31);
-    `d(12) `ADDC(5'd31, a3, 5'd1);
+    `d(12) `MOVC(a3, 5'd1);
     `d(13) `JMP(5'd1, 5'd31);
     `d(14) `SUBC(5'd0, 16'd1, 5'd0);
     `d(15) `BNE(5'd0, 16'd2, 5'd31);
-    `d(16) `ADDC(5'd31, a4, 5'd1);
+    `d(16) `MOVC(a4, 5'd1);
     `d(17) `JMP(5'd1, 5'd31);
     `d(19) `JMP(5'd31, 5'd31);     
     
@@ -89,26 +89,26 @@ module instr (
     // r2 stores n-1.
     // r3 stores n-2.
 
-    `f(0) `ADDC(5'd24, 16'd0, 5'd3);
+    `f(0) `MOV(5'd24, 5'd3);
     `f(1) `BNE(5'd3, 16'd2, 5'd31);    // If n == 0
-    `f(2) `XOR(5'd0, 5'd0, 5'd0);
+    `f(2) `ZERO(5'd0);
     `f(3) `JMP(5'd31, 5'd31);
 
     `f(4) `SUBC(5'd3, 16'd1, 5'd3);
     `f(5) `BNE(5'd3, 16'd2, 5'd31);    // If n ==1 
-    `f(6) `ADDC(5'd31, 15'd1, 5'd0);
+    `f(6) `MOVC(15'd1, 5'd0);
     `f(7) `JMP(5'd31, 5'd31);
 
-    `f(8) `ADDC(5'd31, 16'd0, 5'd2);    // Init r2 = 0
-    `f(9) `ADDC(5'd31, 16'd1, 5'd1);    // Init r1 = 1
+    `f(8) `ZERO(5'd2);                  // Init r2 = 0
+    `f(9) `MOVC(16'd1, 5'd1);    // Init r1 = 1
     `f(10) `SUBC(5'd3, 16'd1, 5'd3);    // Loop through
     `f(11) `ADD(5'd1, 5'd2, 5'd0);
-    `f(12) `ADD(5'd31, 5'd1, 5'd2);
-    `f(13) `ADD(5'd31, 5'd0, 5'd1);
+    `f(12) `MOV(5'd1, 5'd2);
+    `f(13) `MOV(5'd0, 5'd1);
     `f(14) `BNE(5'd3, -16'd5, 5'd31);    // End loop
-    `f(15) `XOR(5'd1, 5'd1, 5'd1);
-    `f(16) `XOR(5'd2, 5'd2, 5'd2);
-    `f(17) `XOR(5'd3, 5'd3, 5'd3);
+    `f(15) `ZERO(5'd1);
+    `f(16) `ZERO(5'd2);
+    `f(17) `ZERO(5'd3);
     `f(18) `JMP(5'd31, 5'd31);
 
     
@@ -122,7 +122,7 @@ module instr (
     // r4 - tmp
     // r5 - comparison bit
 
-    `s(0) `ADDC(5'd31, 16'd1, 5'd0);	// for (i = 1
+    `s(0) `MOVC(16'd1, 5'd0);	// for (i = 1
 
     `s(1) `LD(5'd0, 16'd0, 5'd2);	// key = arr[i]
     `s(2) `SUBC(5'd0, 16'd4, 5'd1);	// j = i - 1
@@ -157,13 +157,7 @@ module instr (
     ///////////////////////////////////////////////////////////////////////
     // Save
     
-    `t(0) `ST(5'd24,16'd0,5'd25); // store the value in memory
-    `t(1) `JMP(5'd31, 5'd31);
-    
     ///////////////////////////////////////////////////////////////////////
     // Load
-    
-    `l(0) `LD(5'd25,16'd0,5'd7); // load value into a display register
-    `l(1) `JMP(5'd31, 5'd31);
 
 endmodule
