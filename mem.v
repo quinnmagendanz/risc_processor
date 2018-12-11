@@ -3,7 +3,7 @@
 `define MAX_MEM_INDEX 127
 
 module mem (
-        input clock, mwr, moe, 
+        input clock,reset, mwr, moe, 
         input [31:0] mwd, ma,
         output [31:0] mrd,
         output [31:0] first_eight);

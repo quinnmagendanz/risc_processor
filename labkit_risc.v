@@ -104,7 +104,7 @@ module labkit(
     alu arith(a, b, alufn, alu_out);
     
     // Reads occurs if MOE. On rising clock edge, if MWR, write to memory occurs.
-    mem data_memory(clock, mwr, moe, rbdata, alu_out, mrd);
+    mem data_memory(clock, reset, mwr, moe, rbdata, alu_out, mrd);
     
 //
 //////////////////////////////////////////////////////////////////////////////////
