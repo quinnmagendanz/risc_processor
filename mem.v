@@ -10,7 +10,7 @@ module mem (
         
     // TODO(magendanz) Probably need to use different type of
     // memory for non-tiny data sets.
-    reg [31:0] d_mem [`MAX_MEM_INDEX:0]; // Supports 32 32-bit stores.
+    reg [31:0] d_mem [`MAX_MEM_INDEX:0]; // Supports 128 32-bit stores.
     assign first_eight = {d_mem[7][3:0], d_mem[6][3:0], d_mem[5][3:0], d_mem[4][3:0], d_mem[3][3:0], d_mem[2][3:0], d_mem[1][3:0], d_mem[0][3:0]}; 
     
     // TODO(magendanz) not sure exactly why we need MOE.
@@ -27,6 +27,11 @@ module mem (
         if (mwr && (ma >> 2) <= `MAX_MEM_INDEX) begin
             d_mem[ma >> 2] <= mwd;
         end
+	if (reset) begin
+	  for (i=0; i<128; i=i+1) begin
+            d_mem[i] <= 0;
+          end
+	end
     end
     
 
