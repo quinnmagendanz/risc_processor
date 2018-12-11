@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 `define DEFAULT_ADDR    32'd0
-`define FIB_ADDR        32'd90
-`define SORT_ADDR       32'd180
-`define STORE_ADDR      32'd280
-`define LOAD_ADDR       32'd320
-`define PUSHA_ADDR      32'd360  
+`define FIB_ADDR        32'd100
+`define SORT_ADDR       32'd200
+`define STORE_ADDR      32'd300
+`define LOAD_ADDR       32'd380
+`define PUSHA_ADDR      32'd440  
 
 `define d(j) assign i[j + (`DEFAULT_ADDR >> 2)] =
 `define f(j) assign i[j + (`FIB_ADDR >> 2)] =
