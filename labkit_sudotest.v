@@ -50,7 +50,7 @@ module labkit_test();
     assign z = radata == 0 ? 1 : 0;
     assign jt = radata;
     assign a = asel ? pc_offset : radata;
-    assign b = bsel ? {{16{id[15]}}, id[15:0]} | multi_counter : rbdata;
+    assign b = bsel ? {{16{id[15]}}, id[15:0]} | (multi_counter << 2) : rbdata;
     assign wdata = wdsel == 0 ? pc_inc : (wdsel == 1 ? alu_out : mrd);
     
     // PC updated on rising clock edge.
@@ -64,13 +64,13 @@ module labkit_test();
         
     // Reads occur on wire. On rising clock edge, if WERF, write 
     // to register occurs.
-    regfile regs(wdata, ra, rb, rc, ra2sel, wasel, werf, reset, clock, program_selector, SW /* Processor input */, radata, rbdata, reg_data);
+    regfile regs(wdata, ra, rb, (rc | multi_counter), ra2sel, wasel, werf, reset, clock, program_selector, SW /* Processor input */, radata, rbdata, reg_data);
 
     // Perform arithmetic on inputs.
     alu arith(a, b, alufn, alu_out);
     
     // Reads occurs if MOE. On rising clock edge, if MWR, write to memory occurs.
-    mem data_memory(clock, mwr, moe, rbdata, alu_out, mrd, first_eight); 
+    mem data_memory(clock, reset, mwr, moe, rbdata, alu_out, mrd, first_eight); 
     
     initial begin   // system clock
         forever #5 clock = !clock;
@@ -143,37 +143,35 @@ module labkit_test();
 //        #8000; // Need many cycles.
 
 //        // Save and load test
-        input1 = 3;
-        input2 = 4;
-        show_output = 1;
-        #20 run_save = 1;
-        #20 run_save = 0;
-        #200 run_load = 1;
-        #20 run_load = 0;
-        #200 input1 = 6;
-        input2 = 8;
-        run_save = 1;
-        #20 run_save = 0;
-        #200 run_load = 1;
-        #20 run_load = 0;
-        #200 input2 = 4;
-        run_load = 1;
-        #20 run_load = 0;
-        #500;
+//        input1 = 3;
+//        input2 = 4;
+//        show_output = 1;
+//        #20 run_save = 1;
+//        #20 run_save = 0;
+//        #200 run_load = 1;
+//        #20 run_load = 0;
+//        #200 input1 = 6;
+//        input2 = 8;
+//        run_save = 1;
+//        #20 run_save = 0;
+//        #200 run_load = 1;
+//        #20 run_load = 0;
+//        #200 input2 = 4;
+//        run_load = 1;
+//        #20 run_load = 0;
+//        #500;
 
         // Test pusha
-//        show_output = 1;
-//        for (i = 0; i < 16; i = i + 4) begin
-//            input1 = i >> 2;
-//            input2 = i;
-//            run_save = 1;
-//            #20 run_save = 0;
-//            #200;
-//        end
-//        input2 = 16;
-//        run_pusha = 1;
-//        #20 run_pusha = 0;
-//        #1600;
+        show_output = 1;
+        input2 = 16;
+        run_pusha = 1;
+        #20 run_pusha = 0;
+        #300 run_load = 1;
+        #20 run_load = 0;
+        #200 input2 = 20;
+        run_load = 1;
+        #20 run_load = 0;
+        #200
     
         $stop;
     end

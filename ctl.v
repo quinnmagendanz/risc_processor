@@ -10,7 +10,7 @@ module ctl (
 		output [4:0] multi);
 	`include "risc_constants.vh"
 	
-	wire [21:0] op_states [63:0]; 
+	wire [22:0] op_states [63:0]; 
 	                                 //alufn,     asel, bsel, moe,  mwr,  pcsel,ra2sel,wasel,wdsel,werf, multi
     assign op_states[`op_LD] =      {`alu_ADD,   1'b0, 1'b1, 1'b1, 1'b0, 3'd0, 1'b0, 1'b0, 2'd2, 1'b1, 5'd0};
     assign op_states[`op_ST] =      {`alu_ADD,   1'b0, 1'b1, 1'b0, 1'b1, 3'd0, 1'b1, 1'b0, 2'd0, 1'b0, 5'd0};
@@ -50,8 +50,8 @@ module ctl (
     assign op_states[`op_SHRC] =    {`alu_SHR,   1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1, 5'd0};
     assign op_states[`op_SRAC] =    {`alu_SRA,   1'b0, 1'b1, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd1, 1'b1, 5'd0};
     
-    wire [31:0] out_irq =       {6'b0, 1'b0, 1'b0, 1'b0, 1'b0, 3'd4, 1'b0, 1'b1, 2'd0, 1'b1, 5'd0};
-    wire [31:0] out_reset =     {6'b0, 1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd0, 1'b0, 5'd0};
+    wire [22:0] out_irq =       {6'b0, 1'b0, 1'b0, 1'b0, 1'b0, 3'd4, 1'b0, 1'b1, 2'd0, 1'b1, 5'd0};
+    wire [22:0] out_reset =     {6'b0, 1'b0, 1'b0, 1'b0, 1'b0, 3'd0, 1'b0, 1'b0, 2'd0, 1'b0, 5'd0};
     // TODO(magendanz) ILLOP {6'b000000, 1'b0, 1'b0, 1'b0, 1'b0, 3'd3, 1'b0, 1'b1, 2'd0, 1'b1};
 
 	assign {alufn, asel, bsel, moe, mwr, pcsel, ra2sel, wasel, wdsel, werf, multi} = reset ? out_reset : (irq ? out_irq : op_states[op]);

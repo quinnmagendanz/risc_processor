@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 `define DEFAULT_ADDR    32'd0
-`define FIB_ADDR        32'd100
-`define SORT_ADDR       32'd220
-`define STORE_ADDR      32'd340
-`define LOAD_ADDR       32'd420
-`define PUSHA_ADDR      32'd500  
+`define FIB_ADDR        32'd90
+`define SORT_ADDR       32'd180
+`define STORE_ADDR      32'd280
+`define LOAD_ADDR       32'd320
+`define PUSHA_ADDR      32'd360  
 
 `define d(j) assign i[j + (`DEFAULT_ADDR >> 2)] =
 `define f(j) assign i[j + (`FIB_ADDR >> 2)] =
@@ -82,11 +82,11 @@ module instr (
     `d(15) `BNE(5'd0, 16'd2, 5'd31);
     `d(16) `MOVC(a4, 5'd1);
     `d(17) `JMP(5'd1, 5'd31);
-    `d(14) `SUBC(5'd0, 16'd1, 5'd0);
-    `d(15) `BNE(5'd0, 16'd2, 5'd31);
-    `d(16) `MOVC(a5, 5'd1);
-    `d(17) `JMP(5'd1, 5'd31);
-    `d(19) `JMP(5'd31, 5'd31);          // Should never reach here.     
+    `d(18) `SUBC(5'd0, 16'd1, 5'd0);
+    `d(19) `BNE(5'd0, 16'd2, 5'd31);
+    `d(20) `MOVC(a5, 5'd1);
+    `d(21) `JMP(5'd1, 5'd31);
+    `d(22) `JMP(5'd31, 5'd31);          // Should never reach here.     
     
     ///////////////////////////////////////////////////////////////////////
     // Fibonacci
@@ -192,6 +192,12 @@ module instr (
     
     ///////////////////////////////////////////////////////////////////////
     // Pusha
-    `p(0) `PUSHA(5'd25);
+    `p(0) `MOVC(16'd1, 5'd0);
+    `p(1) `MOVC(16'd2, 5'd1);
+    `p(2) `MOVC(16'd3, 5'd2);
+    `p(3) `MOVC(16'd4, 5'd3);                              
+    `p(4) `MOVC(16'd5, 5'd4);            
+    `p(5) `PUSHA(5'd25);
+    `p(6) `JMP(5'd31, 5'd31);
     
 endmodule

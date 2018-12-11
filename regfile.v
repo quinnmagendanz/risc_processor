@@ -55,7 +55,7 @@ module regfile (
 		end
 		
         data[24] <= user_input[7:0];
-        data[25] <= user_input[15:8];
+        data[25] <= user_input[14:8];
         data[26] <= program_selector;
 		
 		if (reset) begin
