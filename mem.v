@@ -23,12 +23,13 @@ module mem (
         end
     end
     
+    integer i;
     always @(posedge clock) begin
         if (mwr && (ma >> 2) <= `MAX_MEM_INDEX) begin
             d_mem[ma >> 2] <= mwd;
         end
 	if (reset) begin
-	  for (i=0; i<128; i=i+1) begin
+	  for (i=0; i<`MAX_MEM_INDEX; i=i+1) begin
             d_mem[i] <= 0;
           end
 	end
