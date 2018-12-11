@@ -23,7 +23,7 @@ module mem (
         end
     end
     
-    integer i;
+
     always @(posedge clock) begin
         if (mwr && (ma >> 2) <= `MAX_MEM_INDEX) begin
             d_mem[ma >> 2] <= mwd;
