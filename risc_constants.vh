@@ -4,6 +4,7 @@
 // OP[5:0]
 `define op_LD       6'b011000
 `define op_ST       6'b011001
+`define op_PUSHA    6'b011010
 `define op_JMP      6'b011011
 `define op_BEQ      6'b011100
 `define op_BNE      6'b011101
@@ -66,6 +67,7 @@
 // TODO(magendanz) Extra instructions: ZERO, MOV, PUSHA
 `define LD(ra, lit, rc)     {`op_LD, rc, ra, lit}
 `define ST(rc, lit, ra)     {`op_ST, rc, ra, lit}
+`define PUSHA(ra)           {`op_PUSHA, 5'b0, ra, 16'b0}
 `define JMP(ra, rc)         {`op_JMP, rc, ra, 16'b0}
 `define BEQ(ra, lit, rc)    {`op_BEQ, rc, ra, lit}
 `define BNE(ra, lit, rc)    {`op_BNE, rc, ra, lit}

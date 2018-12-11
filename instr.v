@@ -1,16 +1,18 @@
 `timescale 1ns / 1ps
 
 `define DEFAULT_ADDR    32'd0
-`define FIB_ADDR        32'd80
+`define FIB_ADDR        32'd100
 `define SORT_ADDR       32'd200
-`define STORE_ADDR      32'd320
-`define LOAD_ADDR       32'd400    
+`define STORE_ADDR      32'd300
+`define LOAD_ADDR       32'd380
+`define PUSHA_ADDR      32'd440  
 
 `define d(j) assign i[j + (`DEFAULT_ADDR >> 2)] =
 `define f(j) assign i[j + (`FIB_ADDR >> 2)] =
 `define s(j) assign i[j + (`SORT_ADDR >> 2)] =
 `define t(j) assign i[j + (`STORE_ADDR >> 2)] =
 `define l(j) assign i[j + (`LOAD_ADDR >> 2)] =
+`define p(j) assign i[j + (`PUSHA_ADDR >> 2)] =
 
 // Instructions
 // TODO(magendanz) Extra instructions: ZERO, MOV, PUSHA
@@ -32,6 +34,7 @@ module instr (
     parameter [15:0] a2 = `SORT_ADDR;
     parameter [15:0] a3 = `STORE_ADDR;
     parameter [15:0] a4 = `LOAD_ADDR;
+    parameter [15:0] a5 = `PUSHA_ADDR;
     
     ///////////////////////////////////////////////////////////////////////
     // TODO(magendanz) Is there a better way to do this?
@@ -79,7 +82,11 @@ module instr (
     `d(15) `BNE(5'd0, 16'd2, 5'd31);
     `d(16) `MOVC(a4, 5'd1);
     `d(17) `JMP(5'd1, 5'd31);
-    `d(19) `JMP(5'd31, 5'd31);     
+    `d(18) `SUBC(5'd0, 16'd1, 5'd0);
+    `d(19) `BNE(5'd0, 16'd2, 5'd31);
+    `d(20) `MOVC(a5, 5'd1);
+    `d(21) `JMP(5'd1, 5'd31);
+    `d(22) `JMP(5'd31, 5'd31);          // Should never reach here.     
     
     ///////////////////////////////////////////////////////////////////////
     // Fibonacci
@@ -182,5 +189,15 @@ module instr (
     `l(6) `ZERO(5'd6);
     `l(7) `ZERO(5'd7);
     `l(8) `JMP(5'd31, 5'd31);
-
+    
+    ///////////////////////////////////////////////////////////////////////
+    // Pusha
+    `p(0) `MOVC(16'd1, 5'd0);
+    `p(1) `MOVC(16'd2, 5'd1);
+    `p(2) `MOVC(16'd3, 5'd2);
+    `p(3) `MOVC(16'd4, 5'd3);                              
+    `p(4) `MOVC(16'd5, 5'd4);            
+    `p(5) `PUSHA(5'd25);
+    `p(6) `JMP(5'd31, 5'd31);
+    
 endmodule
