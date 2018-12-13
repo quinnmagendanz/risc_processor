@@ -64,7 +64,7 @@
 `define XADR        32'h80000008
 
 // Instructions
-// TODO(magendanz) Extra instructions: ZERO, MOV, PUSHA
+// TODO(magendanz) Extra instructions: ZERO, MOD, MOV, PUSHA
 `define LD(ra, lit, rc)     {`op_LD, rc, ra, lit}
 `define ST(rc, lit, ra)     {`op_ST, rc, ra, lit}
 `define PUSHA(ra)           {`op_PUSHA, 5'b0, ra, 16'b0}
